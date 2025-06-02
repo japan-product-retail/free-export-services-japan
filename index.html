@@ -1213,36 +1213,61 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="company">会社名・屋号</label>
-                        <input type="text" id="company" name="company">
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; text-align: center;">お問い合わせフォーム</h3>
+                    
+                    <!-- Google Formsリンク（メイン） -->
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeM4mI73TQLp19OngDclbYM4sXgnmc1p6zYmf8IQUm3i7WYtg/viewform?usp=sharing" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
+                            <i class="fas fa-external-link-alt"></i>
+                            無料相談を申し込む
+                        </a>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">
+                            ※クリックするとGoogleフォームが開きます<br>
+                            確実にメールが届く安全なフォームです
+                        </p>
                     </div>
-                    <div class="form-group">
-                        <label for="name">お名前 *</label>
-                        <input type="text" id="name" name="name" required>
+
+                    <div style="text-align: center; margin: 2rem 0; position: relative;">
+                        <hr style="border: none; height: 1px; background: rgba(255,255,255,0.3);">
+                        <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.1); padding: 0 1rem; backdrop-filter: blur(10px);">または直接入力</span>
                     </div>
-                    <div class="form-group">
-                        <label for="email">メールアドレス *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">電話番号</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="products">取扱商品</label>
-                        <input type="text" id="products" name="products" placeholder="例：アパレル、電子機器、食品など">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">ご相談内容</label>
-                        <textarea id="message" name="message" placeholder="海外展開についてのご質問やご要望をお聞かせください"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-paper-plane"></i>
-                        無料相談を申し込む
-                    </button>
-                </form>
+
+                    <!-- 従来のフォーム（サブ） -->
+                    <form class="contact-form-secondary" id="contactForm" style="opacity: 0.8;">
+                        <p style="text-align: center; font-size: 0.9rem; margin-bottom: 1rem; color: rgba(255,255,255,0.7);">
+                            こちらのフォームでも送信できます
+                        </p>
+                        <div class="form-group">
+                            <label for="company">会社名・屋号</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">お名前 *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">電話番号</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="products">取扱商品</label>
+                            <input type="text" id="products" name="products" placeholder="例：アパレル、電子機器、食品など">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">ご相談内容</label>
+                            <textarea id="message" name="message" placeholder="海外展開についてのご質問やご要望をお聞かせください"></textarea>
+                        </div>
+                        <button type="button" onclick="redirectToGoogleForm()" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i>
+                            こちらからも送信する
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1256,7 +1281,12 @@
         </div>
     </footer>
 
+    <!-- EmailJS ライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
     <script>
+        // EmailJS初期化（サービスIDを設定）
+        emailjs.init("YOUR_PUBLIC_KEY"); // ここにあなたのPublic Keyを入力
+        
         // ヘッダーのスクロール効果
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1286,13 +1316,36 @@
             });
         });
 
-        // フォーム送信処理
+        // Google Formsへのリダイレクト機能
+        function redirectToGoogleForm() {
+            // フォームの入力内容を取得
+            const formData = {
+                company: document.getElementById('company').value,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                products: document.getElementById('products').value,
+                message: document.getElementById('message').value
+            };
+            
+            // 入力内容をURLパラメータとして組み立て（簡易版）
+            let params = '';
+            if (formData.name) params += `entry.123456789=${encodeURIComponent(formData.name)}&`;
+            if (formData.email) params += `entry.987654321=${encodeURIComponent(formData.email)}&`;
+            
+            // Google Formsを新しいタブで開く
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSeM4mI73TQLp19OngDclbYM4sXgnmc1p6zYmf8IQUm3i7WYtg/viewform?usp=sharing', '_blank');
+            
+            // フォームをリセット
+            document.getElementById('contactForm').reset();
+            
+            // ユーザーに通知
+            alert('Googleフォームが開きました。新しいタブでご入力ください。');
+        }
+
+        // フォーム送信処理（EmailJS版）
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // フォームデータの取得
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
             
             // 送信ボタンの状態変更
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -1300,13 +1353,18 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
             submitBtn.disabled = true;
             
-            // 実際の送信処理（ここではデモ用）
-            setTimeout(() => {
-                alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+            // EmailJS で送信
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function(response) {
+                    alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
+                    document.getElementById('contactForm').reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    alert('送信に失敗しました。もう一度お試しください。');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
 
         // モバイルメニュートグル
