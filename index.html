@@ -3,174 +3,1473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPプロダクトリテイリング合同会社 - 無料で世界へ | 輸出専門事業者</title>
-    <meta name="description" content="JPプロダクトリテイリング合同会社は、中小企業や個人事業主の皆様の商品を無料で世界に輸出します。リスクゼロ、コストゼロで海外展開を実現。">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <title>無料で世界へ。あなたの商品を、リスクゼロで海外展開</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .gradient-bg { background: linear-gradient(135deg, #1a5f7a 0%, #3a8daa 100%); }
-        .input-group {
-            position: relative;
-            margin-bottom: 1.5rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .input {
-            border: solid 1.5px #9e9e9e;
-            border-radius: 1rem;
-            background: none;
-            padding: 1rem;
-            font-size: 1rem;
-            color: #333;
-            transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --success: #10b981;
+            --danger: #ef4444;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic Medium', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
             width: 100%;
         }
-        .user-label {
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
             position: absolute;
-            left: 15px;
-            color: #9e9e9e;
-            pointer-events: none;
-            transform: translateY(1rem);
-            transition: 150ms cubic-bezier(0.4,0,0.2,1);
-            background-color: white;
-            padding: 0 0.2em;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
         }
-        .input:focus, .input:valid {
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-item i {
+            color: var(--accent-color);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease;
+        }
+
+        .globe-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .globe {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: var(--shadow-xl);
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .globe::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: worldRotate 10s linear infinite;
+        }
+
+        .globe::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            height: 60%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 20%, transparent 25%),
+                radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.2) 15%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.25) 18%, transparent 23%);
+            border-radius: 50%;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .orbit-1 {
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+        }
+
+        .orbit-2 {
+            width: 140%;
+            height: 140%;
+            top: -20%;
+            left: -20%;
+            animation-direction: reverse;
+            animation-duration: 30s;
+        }
+
+        .satellite {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+        }
+
+        .satellite-1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .satellite-2 {
+            bottom: 0;
+            right: 0;
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 事業内容セクション */
+        .business {
+            background: var(--surface);
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .business-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .business-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background: var(--gradient-1);
+        }
+
+        .business-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .business-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* 無料サービスセクション */
+        .free-service {
+            padding: 5rem 2rem;
+        }
+
+        .service-explanation {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 3rem;
+        }
+
+        .service-highlight {
+            background: var(--gradient-3);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .service-highlight h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* リスクセクション */
+        .risks {
+            background: var(--surface);
+        }
+
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .risk-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--danger);
+        }
+
+        .risk-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .risk-icon {
+            color: var(--danger);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .risk-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .risk-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 安心サポートセクション */
+        .support {
+            background: var(--gradient-2);
+            color: white;
+        }
+
+        .support-content {
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        /* パテントトロールセクション */
+        .patent-troll {
+            padding: 5rem 2rem;
+        }
+
+        .troll-explanation {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .troll-warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .troll-warning h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .troll-warning p {
+            color: #78350f;
+        }
+
+        .example-box {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .cost-highlight {
+            background: var(--gradient-1);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cost-highlight .cost-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* 弊社対策セクション */
+        .our-solution {
+            background: var(--gradient-3);
+            color: white;
+            text-align: center;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .solution-feature i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* お問い合わせセクション */
+        .contact {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
             outline: none;
-            border: 1.5px solid #1a73e8;
+            background: white;
+            box-shadow: var(--shadow-lg);
         }
-        .input:focus ~ .user-label, .input:valid ~ .user-label {
-            transform: translateY(-50%) scale(0.8);
-            background-color: white;
-            padding: 0 .2em;
-            color: #1a73e8;
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* フッター */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes worldRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 追加の装飾要素 */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(245, 158, 11, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            animation: floatIcon 4s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(4) {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        /* セクション間の装飾 */
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(45deg, transparent 30%, var(--primary-color) 50%, transparent 70%);
+            margin: -50px 0;
+            transform: skewY(-2deg);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* 背景パターン */
+        .pattern-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(67, 56, 202, 0.1) 20%, transparent 25%),
+                radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.1) 20%, transparent 25%);
+            background-size: 100px 100px;
+            animation: patternMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .globe-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .business-grid,
+            .solution-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* スムーススクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* スクロールバーのカスタマイズ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--surface);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 leading-normal tracking-normal">
-    <header class="bg-white shadow-lg">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-600">JPプロダクトリテイリング</a>
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="#about" class="hover:text-blue-600">事業内容</a></li>
-                <li><a href="#services" class="hover:text-blue-600">サービス</a></li>
-                <li><a href="#risks" class="hover:text-blue-600">リスク対策</a></li>
-                <li><a href="#contact" class="hover:text-blue-600">お問い合わせ</a></li>
+<body>
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="logo">🌍 海外展開サポート</div>
+            <ul class="nav-links">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#business">事業内容</a></li>
+                <li><a href="#free-service">無料サービス</a></li>
+                <li><a href="#risks">輸出リスク</a></li>
+                <li><a href="#patent-troll">パテントトロール対策</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
             </ul>
+            <button class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
-    <main>
-        <section class="gradient-bg text-white py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6">無料で世界へ。<br>あなたの商品を、リスクゼロで海外展開</h1>
-                <p class="text-xl mb-8">中小企業・個人事業主様の海外進出を、完全無料でサポートいたします。170以上の国と地域へ、50,000品目以上の商品を展開中。</p>
-                <a href="#contact" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition duration-300">
-                    無料相談はこちら
-                </a>
+    <!-- ヒーローセクション -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    無料で世界へ。<br>
+                    あなたの商品を、<br>
+                    <span style="color: var(--accent-color);">リスクゼロ</span>で海外展開
+                </h1>
+                <p class="hero-subtitle">
+                    中小企業・個人事業主様の海外進出を、完全無料でサポートいたします。170以上の国と地域へ、50,000品目以上の商品を展開中。
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-comments"></i>
+                        無料相談はこちら
+                    </a>
+                    <a href="#business" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        事業内容を見る
+                    </a>
+                </div>
             </div>
-        </section>
-
-        <section id="about" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center">事業内容</h2>
-                <div class="bg-white shadow-lg rounded-lg p-8">
-                    <p class="mb-6">弊社の主な事業は、お客様の商品の輸出販売代理と、自社商品の輸出販売でございます。</p>
-                    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6">
-                        <p class="font-bold">完全無料の輸出代行サービス</p>
-                        <p>お客様の商品の販売代理につきましては、お客様に一切のご料金をご負担いただくことなく、<strong>無償</strong>で行っております。法人、個人事業主を問わず、無償で輸出代理を行い、海外の販路拡大のお手伝いをさせていただいております。</p>
+            <div class="hero-visual">
+                <div class="globe-container">
+                    <div class="globe">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="orbit orbit-1">
+                        <div class="satellite satellite-1"></div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="satellite satellite-2"></div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="floating-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <div class="floating-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="floating-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="services" class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center">無償サービスの仕組み</h2>
-                <div class="bg-white shadow-lg rounded-lg p-8">
-                    <p class="mb-6">無償でこのようなサービスを提供している理由につきましては、お客様からお金をいただくのではなく、海外の購入者様から手数料をいただいているためでございます。お客様にご負担いただく発生するコスト、リスク、トラブルは一切ございません。その全てを弊社が負担させていただきます。</p>
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6">
-                        <p class="font-bold">リスクゼロ、コストゼロの海外展開</p>
-                        <p>例えば、お客様が国内で1万円で販売されている商品が、リスクもコストもなく、そのままの価格の1万円で世界中に販売できるとすれば、かなり魅力的ではないでしょうか。もちろん、今まで通り国内での販売も継続しながらのことでございます。</p>
+    <!-- 事業内容セクション -->
+    <div class="section-divider"></div>
+    <section class="section business pattern-bg" id="business">
+        <div class="container">
+            <h2 class="section-title">事業内容</h2>
+            <p class="section-subtitle">
+                弊社の主な事業は、お客様の商品の輸出販売代理と、自社商品の輸出販売でございます。
+            </p>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <p class="mb-6">弊社は、販売代理をさせていただくお客様から料金を請求することはございませんが、海外で販売する際、海外の購入者様から手数料をいただく形式を取らせていただいております。そのため、実際には1万円の商品に対して、送料や様々な手数料を追加して販売いたしますが、お客様は国内で1万円で販売するのと全く同じ利益をお得いただくことが可能でございます。</p>
+                    <h3 class="business-title">完全無料の輸出代行サービス</h3>
+                    <p class="business-description">
+                        お客様の商品の販売代理につきましては、お客様に一切のご料金をご負担いただくことなく、無償で行っております。法人、個人事業主を問わず、無償で輸出代理を行い、海外の販路拡大のお手伝いをさせていただいております。
+                    </p>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="business-title">自社商品の輸出販売</h3>
+                    <p class="business-description">
+                        弊社独自の商品ラインナップを世界各国に展開しております。長年の経験とノウハウを活かし、効率的な海外販売を実現しています。
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="risks" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center">輸出リスクとその対策</h2>
-                <div class="bg-white shadow-lg rounded-lg p-8">
-                    <p class="mb-6">輸出する際に発生するコスト、リスク、トラブルには以下のようなものが考えられます：</p>
-                    <ul class="list-disc pl-5 mb-6 space-y-2">
-                        <li>海外の購入者による返品</li>
-                        <li>海外の購入者による詐欺</li>
-                        <li>相手側の輸入関税支払い拒否による受取拒否</li>
-                        <li>パテントトロールや商標トロールの脅威（後述いたします）</li>
-                        <li>輸出に関しての禁制品や、各国の輸入に関する禁制品</li>
-                        <li>輸出に関する様々な許可の取得</li>
-                        <li>現地通貨を受け取るための海外口座の取得</li>
-                        <li>インコタームズと呼ばれる貿易取引に関する国際規定の理解</li>
-                        <li>国内の配送会社だけでなく、海外での配送会社との連携の必要性</li>
-                        <li>輸出入のための（返品を受け入れる際は輸入するため）知識</li>
-                        <li>サーチャージ、容積重量によって変化する不確定な送料</li>
-                        <li>為替の変動による利益の変動</li>
-                        <li>各国に支払うべき手数料</li>
-                        <li>輸出入に詳しい税理士の必要性</li>
-                    </ul>
-                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6">
-                        <p class="font-bold">安心の全面サポート</p>
-                        <p>これらの輸出に関する件は全て弊社が負担させていただきますので、お客様はこのようなご心配を一切することなく、商品を海外に展開していただけます。</p>
+    <!-- 無料サービスの仕組みセクション -->
+    <section class="section free-service" id="free-service">
+        <div class="container">
+            <h2 class="section-title">無償サービスの仕組み</h2>
+            <div class="service-explanation">
+                <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+                    無償でこのようなサービスを提供している理由につきましては、お客様からお金をいただくのではなく、海外の購入者様から手数料をいただいているためでございます。お客様にご負担いただく発生するコスト、リスク、トラブルは一切ございません。その全てを弊社が負担させていただきます。
+                </p>
+                
+                <div class="service-highlight">
+                    <h3>リスクゼロ、コストゼロの海外展開</h3>
+                    <p>
+                        例えば、お客様が国内で1万円で販売されている商品が、リスクもコストもなく、そのままの価格の1万円で世界中に販売できるとすれば、かなり魅力的ではないでしょうか。もちろん、今まで通り国内での販売も継続しながらのことでございます。
+                    </p>
+                </div>
+
+                <p style="font-size: 1.125rem; line-height: 1.8;">
+                    弊社は、販売代理をさせていただくお客様から料金を請求することはございませんが、海外で販売する際、海外の購入者様から手数料をいただく形式を取らせていただいております。そのため、実際には1万円の商品に対して、送料や様々な手数料を追加して販売いたしますが、お客様は国内で1万円で販売するのと全く同じ利益をお得いただくことが可能でございます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 輸出リスクセクション -->
+    <section class="section risks" id="risks">
+        <div class="container">
+            <h2 class="section-title">輸出リスクとその対策</h2>
+            <p class="section-subtitle">
+                輸出する際に発生するコスト、リスク、トラブルには以下のようなものが考えられます：
+            </p>
+            <div class="risk-grid">
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-undo"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">パテントトロール・商標トロールへの対策</h3>
-                    <p class="mb-6">上記の問題で、特に最近話題になっておりますのは、日本の中小企業や個人事業主様をターゲットとしたパテント（特許）トロールや商標トロールの脅威でございます。X（旧Twitter）でお調べいただきますと、ほぼ毎日、このことに関して話題になっていることがおわかりいただけると存じます。それほど日本人にとって脅威となっております。</p>
-                    <p class="mb-6">このパテントトロールや商標トロールというのは、海外の法の抜け穴を利用した、かなり悪質なビジネスモデルでございまして、簡単に申し上げますと、製品などを一切製造しないにもかかわらず、特許権の行使のみを行い、高額な訴訟を行う企業や弁護士事務所でございます。和解金ビジネスとも呼ばれております（その理由は後述いたします）。</p>
-                    <p class="mb-6">パテントトロールは、GoogleやAppleなども被害に遭っております。わかりやすい有名な例といたしましては、ポケモンがポケットモンスターという名称を使用しておりますが、これをモンスターエナジードリンクのメーカーであるMonster Beverageが、モンスターという名称は自社のものだと訴えたものがございます。モンスターという表現は大昔からあるものでございますし、それの権利を主張するというのは、ポケモン側からすると、かなり理不尽に思える話でございます。現行法では取り締まることはできません。</p>
-                    <p class="mb-6">このような大企業は、この理不尽な訴えに対して、真っ向から勝負することもできますが、中小企業はそうもまいりません。というのも、この訴訟を起こされますと、プラットフォーム側の口座と、海外で使用している口座、それにまつわるアカウント、資産は全て、裁判所側から差し押さえされ停止されてしまいます。</p>
-                    <p class="mb-6">そのため、無視することは絶対にできないのでございますが、この理不尽な訴訟に戦うには、多額の報酬が必要な訴訟弁護士を雇う必要がございます。一般的には知財訴訟には、３人の訴訟弁護士が必要で、日本円で2億円から3億円ほどかかります。訴訟を行えば、ほぼ確実に勝てるような案件でございますが、そのようなコストを裁判のためだけに中小企業は払うことは難しいと存じます。</p>
-                    <p class="mb-6">そのため、訴訟を受けた中小企業や個人事業主の皆様は、和解金を支払うしかなくなってしまいます。このことに味を占めた悪徳集団が、和解金を目的として、かなり理不尽な形で片っ端から、輸出を行っている日本人の企業や個人事業主を一回で数百~数千件と標的にしております。</p>
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6">
-                        <p class="font-bold">弊社の対策</p>
-                        <p>弊社はそのような悪徳ビジネスモデルの方々から標的にならないよう、専門チームで対策を行っております。弊社は数万件にもおよぶ商品を輸出しているため、輸出する際のノウハウは全て持ち合わせております。まずはお気軽にご相談いただければ幸いでございます。</p>
+                    <h4 class="risk-title">海外の購入者による返品</h4>
+                    <p class="risk-description">海外顧客からの返品対応と国際送料の負担が発生します。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-user-secret"></i>
                     </div>
+                    <h4 class="risk-title">海外の購入者による詐欺</h4>
+                    <p class="risk-description">悪質な購入者による詐欺被害のリスクがあります。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h4 class="risk-title">相手側の輸入関税支払い拒否による受取拒否</h4>
+                    <p class="risk-description">関税支払いを拒否され、商品が返送されるリスクがあります。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h4 class="risk-title">パテントトロールや商標トロールの脅威</h4>
+                    <p class="risk-description">悪質な知的財産権侵害訴訟のリスクがあります（後述いたします）。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4 class="risk-title">輸出に関しての禁制品や、各国の輸入に関する禁制品</h4>
+                    <p class="risk-description">各国の規制により商品が輸出・輸入できない場合があります。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h4 class="risk-title">輸出に関する様々な許可の取得</h4>
+                    <p class="risk-description">輸出に必要な各種許可や認可の取得が必要です。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h4 class="risk-title">現地通貨を受け取るための海外口座の取得</h4>
+                    <p class="risk-description">海外での決済を受けるための銀行口座開設が必要です。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4 class="risk-title">インコタームズと呼ばれる貿易取引に関する国際規定の理解</h4>
+                    <p class="risk-description">複雑な国際貿易ルールの習得が必要です。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4 class="risk-title">国内の配送会社だけでなく、海外での配送会社との連携の必要性</h4>
+                    <p class="risk-description">複数の配送業者との契約と調整が必要です。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="risk-title">輸出入のための（返品を受け入れる際は輸入するため）知識</h4>
+                    <p class="risk-description">輸出入に関する専門的な知識の習得が必要です。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <h4 class="risk-title">サーチャージ、容積重量によって変化する不確定な送料</h4>
+                    <p class="risk-description">予測困難な送料変動により利益が圧迫されます。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="risk-title">為替の変動による利益の変動</h4>
+                    <p class="risk-description">通貨変動により収益が不安定になります。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h4 class="risk-title">各国に支払うべき手数料</h4>
+                    <p class="risk-description">各国固有の手数料や税金の支払いが必要です。</p>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h4 class="risk-title">輸出入に詳しい税理士の必要性</h4>
+                    <p class="risk-description">国際税務に精通した専門家との契約が必要です。</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center">お問い合わせ</h2>
-                <div class="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
-                    <p class="mb-6 text-center">海外展開についてのご相談は、以下のフォームからお気軽にお問い合わせください。</p<form action="https://formspree.io/f/xjkbkgaz" method="POST">
-                        <div class="input-group">
-                            <input type="text" id="name" name="name" class="input" required>
-                            <label for="name" class="user-label">お名前</label>
-                        </div>
-                        <div class="input-group">
-                            <input type="email" id="email" name="email" class="input" required>
-                            <label for="email" class="user-label">メールアドレス</label>
-                        </div>
-                        <div class="input-group">
-                            <textarea id="message" name="message" rows="4" class="input" required></textarea>
-                            <label for="message" class="user-label">お問い合わせ内容</label>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300">
-                                送信する
-                            </button>
-                        </div>
-                    </form>
+    <!-- 安心の全面サポートセクション -->
+    <section class="section support" id="support">
+        <div class="container">
+            <div class="support-content">
+                <h2 class="section-title" style="color: white;">安心の全面サポート</h2>
+                <p>
+                    これらの輸出に関する件は全て弊社が負担させていただきますので、お客様はこのようなご心配を一切することなく、商品を海外に展開していただけます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- パテントトロール・商標トロール対策セクション -->
+    <section class="section patent-troll" id="patent-troll">
+        <div class="container">
+            <h2 class="section-title">パテントトロール・商標トロールへの対策</h2>
+            
+            <div class="troll-explanation">
+                <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+                    上記の問題で、特に最近話題になっておりますのは、日本の中小企業や個人事業主様をターゲットとしたパテント（特許）トロールや商標トロールの脅威でございます。X（旧Twitter）でお調べいただきますと、ほぼ毎日、このことに関して話題になっていることがおわかりいただけると存じます。それほど日本人にとって脅威となっております。
+                </p>
+
+                <div class="troll-warning">
+                    <h4>パテントトロール・商標トロールとは</h4>
+                    <p>
+                        このパテントトロールや商標トロールというのは、海外の法の抜け穴を利用した、かなり悪質なビジネスモデルでございまして、簡単に申し上げますと、製品などを一切製造しないにもかかわらず、特許権の行使のみを行い、高額な訴訟を行う企業や弁護士事務所でございます。和解金ビジネスとも呼ばれております（その理由は後述いたします）。
+                    </p>
+                </div>
+
+                <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+                    パテントトロールは、GoogleやAppleなども被害に遭っております。わかりやすい有名な例といたしましては、ポケモンがポケットモンスターという名称を使用しておりますが、これをモンスターエナジードリンクのメーカーであるMonster Beverageが、モンスターという名称は自社のものだと訴えたものがございます。モンスターという表現は大昔からあるものでございますし、それの権利を主張するというのは、ポケモン側からすると、かなり理不尽に思える話でございます。現行法では取り締まることはできません。
+                </p>
+
+                <div class="example-box">
+                    <h4>大企業と中小企業の違い</h4>
+                    <p>
+                        このような大企業は、この理不尽な訴えに対して、真っ向から勝負することもできますが、中小企業はそうもまいりません。というのも、この訴訟を起こされますと、プラットフォーム側の口座と、海外で使用している口座、それにまつわるアカウント、資産は全て、裁判所側から差し押さえされ停止されてしまいます。
+                    </p>
+                </div>
+
+                <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+                    そのため、無視することは絶対にできないのでございますが、この理不尽な訴訟に戦うには、多額の報酬が必要な訴訟弁護士を雇う必要がございます。一般的には知財訴訟には、３人の訴訟弁護士が必要で、日本円で2億円から3億円ほどかかります。訴訟を行えば、ほぼ確実に勝てるような案件でございますが、そのようなコストを裁判のためだけに中小企業は払うことは難しいと存じます。
+                </p>
+
+                <div class="cost-highlight">
+                    <h3>訴訟費用</h3>
+                    <div class="cost-amount">2億円〜3億円</div>
+                    <p>知財訴訟に必要な3人の訴訟弁護士費用</p>
+                </div>
+
+                <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+                    そのため、訴訟を受けた中小企業や個人事業主の皆様は、和解金を支払うしかなくなってしまいます。このことに味を占めた悪徳集団が、和解金を目的として、かなり理不尽な形で片っ端から、輸出を行っている日本人の企業や個人事業主を一回で数百~数千件と標的にしております。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 弊社の対策セクション -->
+    <section class="section our-solution" id="our-solution">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">弊社の対策</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 3rem;">
+                弊社はそのような悪徳ビジネスモデルの方々から標的にならないよう、専門チームで対策を行っております。弊社は数万件にもおよぶ商品を輸出しているため、輸出する際のノウハウは全て持ち合わせております。まずはお気軽にご相談いただければ幸いでございます。
+            </p>
+            
+            <div class="solution-features">
+                <div class="solution-feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>専門チーム体制</h4>
+                    <p>パテントトロール対策の専門チームが24時間体制で監視・対応</p>
+                </div>
+                <div class="solution-feature">
+                    <i class="fas fa-database"></i>
+                    <h4>豊富な実績とノウハウ</h4>
+                    <p>数万件の商品輸出実績に基づく確実な対策</p>
+                </div>
+                <div class="solution-feature">
+                    <i class="fas fa-users"></i>
+                    <h4>法務・知財の専門家</h4>
+                    <p>経験豊富な弁護士・知財専門家が常駐</p>
+                </div>
+                <div class="solution-feature">
+                    <i class="fas fa-globe"></i>
+                    <h4>グローバル対応</h4>
+                    <p>世界各国の法制度に精通した対策を実施</p>
                 </div>
             </div>
-        </section>
-    </main>
-<p class="mt-2 text-sm">当社は沖縄県公安委員会許可の古物商です（許可番号 第971052200606号）</p>
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <h3 class="text-xl font-bold mb-4">JPプロダクトリテイリング合同会社</h3>
-            <p class="mb-2">代表: 島袋 謙</p>
-            <p class="mb-2">〒904-0116 沖縄県中頭郡北谷町字伊平204番地ベアーズコート桑江タウンリゾート801</p>
-            <p class="mb-4">Email: <a href="mailto:contact@japan-product-retail.com" class="underline">contact@japan-product-retail.com</a></p>
-            <p>&copy; 2024 JPプロダクトリテイリング合同会社. All rights reserved.</p>
+        </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>お問い合わせ</h2>
+                    <p>
+                        海外展開についてのご相談は、以下のフォームからお気軽にお問い合わせください。
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="fas fa-phone"></i>
+                            <span>24時間以内にご連絡</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>完全無料相談</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="fas fa-handshake"></i>
+                            <span>専門スタッフ対応</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-rocket"></i>
+                            <span>即日対応可能</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="company">会社名・屋号</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">お名前 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="products">取扱商品</label>
+                        <input type="text" id="products" name="products" placeholder="例：アパレル、電子機器、食品など">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ご相談内容</label>
+                        <textarea id="message" name="message" placeholder="海外展開についてのご質問やご要望をお聞かせください"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-paper-plane"></i>
+                        無料相談を申し込む
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 海外展開サポートサービス. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // ヘッダーのスクロール効果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // スムーススクロール機能
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // フォーム送信処理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // フォームデータの取得
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // 送信ボタンの状態変更
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+            submitBtn.disabled = true;
+            
+            // 実際の送信処理（ここではデモ用）
+            setTimeout(() => {
+                alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // モバイルメニュートグル
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = 'var(--shadow-lg)';
+                navLinks.style.borderRadius = '0 0 10px 10px';
+            }
+        });
+
+        // 画面サイズ変更時の処理
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'static';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.background = 'transparent';
+                navLinks.style.padding = '0';
+                navLinks.style.boxShadow = 'none';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+
+        // スクロール時のアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // アニメーション対象要素の設定
+        document.querySelectorAll('.business-card, .risk-item, .solution-feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // パフォーマンス最適化
+        let ticking = false;
+        
+        function updateHeader() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        });
+
+        // アクセシビリティ向上
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('using-keyboard');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('using-keyboard');
+        });
+
+        // ページ読み込み完了時の処理
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+
+    <!-- 追加のアクセシビリティとパフォーマンス向上のCSS -->
+    <style>
+        /* キーボードナビゲーション時のフォーカス表示 */
+        .using-keyboard *:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* ページ読み込み時のスムーズ表示 */
+        body:not(.loaded) {
+            opacity: 0;
+        }
+
+        body.loaded {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* 高コントラストモード対応 */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0066cc;
+                --secondary-color: #004499;
+                --text-primary: #000000;
+                --text-secondary: #333333;
+            }
+        }
+
+        /* 動きを抑制する設定への対応 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* プリント用スタイル */
+        @media print {
+            .header, .mobile-menu {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
 </body>
 </html>
