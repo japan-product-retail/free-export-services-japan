@@ -116,6 +116,22 @@
             cursor: pointer;
         }
 
+        /* ヘッダーの連絡先（デスクトップ用） */
+        .header-contact {
+            display: flex;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .header-contact {
+                display: flex !important;
+            }
+        }
+
+        .header-contact a:hover {
+            color: var(--secondary-color) !important;
+        }
+
         /* ヒーローセクション */
         .hero {
             min-height: 100vh;
@@ -642,10 +658,42 @@
             background: var(--text-primary);
             color: white;
             padding: 3rem 2rem 1rem;
-            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 0.25rem 0;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
         }
 
         .footer-bottom {
+            text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
@@ -863,7 +911,12 @@
     <!-- ヘッダー -->
     <header class="header" id="header">
         <nav class="nav">
-            <div class="logo">🌍 海外展開サポート</div>
+            <div class="logo">🌍 ExportPlus</div>
+            <div class="header-contact" style="display: none;">
+                <a href="tel:09097847764" style="color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                    <i class="fas fa-phone"></i> 090-9784-7764
+                </a>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">ホーム</a></li>
                 <li><a href="#business">事業内容</a></li>
@@ -1192,7 +1245,8 @@
                 <div class="contact-info">
                     <h2>お問い合わせ</h2>
                     <p>
-                        海外展開についてのご相談は、以下のフォームからお気軽にお問い合わせください。
+                        海外展開についてのご相談は、お気軽にお問い合わせください。<br>
+                        <strong>JPプロダクトリテイリング合同会社</strong>の専門スタッフが対応いたします。
                     </p>
                     <div style="margin-top: 2rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
@@ -1217,56 +1271,26 @@
                     <h3 style="margin-bottom: 1.5rem; text-align: center;">お問い合わせフォーム</h3>
                     
                     <!-- Google Formsリンク（メイン） -->
-                    <div style="text-align: center; margin-bottom: 2rem;">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeM4mI73TQLp19OngDclbYM4sXgnmc1p6zYmf8IQUm3i7WYtg/viewform?usp=sharing" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
+                    <div style="text-align: center;">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeM4mI73TQLp19OngDclbYM4sXgnmc1p6zYmf8IQUm3i7WYtg/viewform?usp=sharing" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1.5rem; font-size: 1.1rem; padding: 1.2rem 2rem;">
                             <i class="fas fa-external-link-alt"></i>
                             無料相談を申し込む
                         </a>
-                        <p style="font-size: 0.9rem; opacity: 0.8;">
-                            ※クリックするとGoogleフォームが開きます<br>
-                            確実にメールが届く安全なフォームです
+                        <p style="font-size: 1rem; opacity: 0.9; line-height: 1.6;">
+                            ✅ クリックするとGoogleフォームが開きます<br>
+                            ✅ 確実にメールが届く安全なフォームです<br>
+                            ✅ 24時間以内にご連絡いたします
                         </p>
                     </div>
 
-                    <div style="text-align: center; margin: 2rem 0; position: relative;">
-                        <hr style="border: none; height: 1px; background: rgba(255,255,255,0.3);">
-                        <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.1); padding: 0 1rem; backdrop-filter: blur(10px);">または直接入力</span>
+                    <!-- 追加情報 -->
+                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                        <h4 style="margin-bottom: 1rem; color: var(--accent-color);">📞 お急ぎの場合</h4>
+                        <p style="margin-bottom: 0.5rem; font-size: 1.1rem;"><strong>090-9784-7764</strong></p>
+                        <p style="margin-bottom: 0.5rem;">または</p>
+                        <p style="margin-bottom: 0.5rem; font-size: 1rem;"><strong>contact@japan-product-retail.com</strong></p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">平日 9:00-18:00 | 24時間以内にご返信</p>
                     </div>
-
-                    <!-- 従来のフォーム（サブ） -->
-                    <form class="contact-form-secondary" id="contactForm" style="opacity: 0.8;">
-                        <p style="text-align: center; font-size: 0.9rem; margin-bottom: 1rem; color: rgba(255,255,255,0.7);">
-                            こちらのフォームでも送信できます
-                        </p>
-                        <div class="form-group">
-                            <label for="company">会社名・屋号</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">お名前 *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">メールアドレス *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">電話番号</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="products">取扱商品</label>
-                            <input type="text" id="products" name="products" placeholder="例：アパレル、電子機器、食品など">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">ご相談内容</label>
-                            <textarea id="message" name="message" placeholder="海外展開についてのご質問やご要望をお聞かせください"></textarea>
-                        </div>
-                        <button type="button" onclick="redirectToGoogleForm()" class="btn btn-secondary" style="width: 100%; justify-content: center;">
-                            <i class="fas fa-paper-plane"></i>
-                            こちらからも送信する
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1275,8 +1299,49 @@
     <!-- フッター -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ExportPlus</h3>
+                    <p style="margin-bottom: 1rem;">世界への扉を開く、あなたのパートナー</p>
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        運営：JPプロダクトリテイリング合同会社
+                    </p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: var(--accent-color); margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: var(--accent-color); margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: var(--accent-color); margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="#business">輸出代行サービス</a></li>
+                        <li><a href="#patent-troll">トロール対策</a></li>
+                        <li><a href="#risks">リスク保証</a></li>
+                        <li><a href="#contact">無料相談</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>会社情報</h3>
+                    <ul>
+                        <li><a href="company.html">会社概要</a></li>
+                        <li><a href="#" onclick="alert('準備中です')">実績・事例</a></li>
+                        <li><a href="#" onclick="alert('準備中です')">よくある質問</a></li>
+                        <li><a href="#" onclick="alert('準備中です')">お客様の声</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@japan-product-retail.com</li>
+                        <li><i class="fas fa-phone"></i> 090-9784-7764</li>
+                        <li><i class="fas fa-clock"></i> 平日 9:00-18:00</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 沖縄県北谷町</li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 海外展開サポートサービス. All rights reserved.</p>
+                <p>&copy; 2025 JPプロダクトリテイリング合同会社 ExportPlus. All rights reserved. | <a href="#" onclick="alert('準備中です')" style="color: inherit;">プライバシーポリシー</a> | <a href="#" onclick="alert('準備中です')" style="color: inherit;">利用規約</a></p>
             </div>
         </div>
     </footer>
@@ -1311,18 +1376,8 @@
             });
         });
 
-        // Google Formsへのリダイレクト機能
-        function redirectToGoogleForm() {
-            // Google Formsを新しいタブで開く
-            window.open('https://docs.google.com/forms/d/e/1FAIpQLSeM4mI73TQLp19OngDclbYM4sXgnmc1p6zYmf8IQUm3i7WYtg/viewform?usp=sharing', '_blank');
-            
-            // フォームをリセット
-            document.getElementById('contactForm').reset();
-            
-            // ユーザーに通知
-            alert('Googleフォームが開きました。新しいタブでご入力ください。');
-        }
-
+        // Google Formsへのリダイレクト機能（不要になったので削除）
+        
         // モバイルメニュートグル
         const mobileMenuBtn = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
