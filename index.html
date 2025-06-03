@@ -1281,12 +1281,7 @@
         </div>
     </footer>
 
-    <!-- EmailJS ライブラリ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
     <script>
-        // EmailJS初期化（サービスIDを設定）
-        emailjs.init("YOUR_PUBLIC_KEY"); // ここにあなたのPublic Keyを入力
-        
         // ヘッダーのスクロール効果
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1318,21 +1313,6 @@
 
         // Google Formsへのリダイレクト機能
         function redirectToGoogleForm() {
-            // フォームの入力内容を取得
-            const formData = {
-                company: document.getElementById('company').value,
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                products: document.getElementById('products').value,
-                message: document.getElementById('message').value
-            };
-            
-            // 入力内容をURLパラメータとして組み立て（簡易版）
-            let params = '';
-            if (formData.name) params += `entry.123456789=${encodeURIComponent(formData.name)}&`;
-            if (formData.email) params += `entry.987654321=${encodeURIComponent(formData.email)}&`;
-            
             // Google Formsを新しいタブで開く
             window.open('https://docs.google.com/forms/d/e/1FAIpQLSeM4mI73TQLp19OngDclbYM4sXgnmc1p6zYmf8IQUm3i7WYtg/viewform?usp=sharing', '_blank');
             
@@ -1342,30 +1322,6 @@
             // ユーザーに通知
             alert('Googleフォームが開きました。新しいタブでご入力ください。');
         }
-
-        // フォーム送信処理（EmailJS版）
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 送信ボタンの状態変更
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
-            submitBtn.disabled = true;
-            
-            // EmailJS で送信
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-                .then(function(response) {
-                    alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
-                    document.getElementById('contactForm').reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, function(error) {
-                    alert('送信に失敗しました。もう一度お試しください。');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
-        });
 
         // モバイルメニュートグル
         const mobileMenuBtn = document.getElementById('mobile-menu');
