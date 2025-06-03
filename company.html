@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社概要 | ExportPlus - JPプロダクトリテイリング合同会社</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --success: #10b981;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic Medium', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+        }
+
+        /* ヘッダー */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .company-info {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .company-header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .company-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .company-details {
+            padding: 2rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .info-table th {
+            background: var(--surface);
+            font-weight: 600;
+            color: var(--text-primary);
+            width: 200px;
+        }
+
+        .info-table td {
+            color: var(--text-secondary);
+        }
+
+        .info-table tr:last-child th,
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 事業内容セクション */
+        .business-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .business-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .business-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .business-list i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        /* 許可・認可セクション */
+        .licenses-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #bae6fd;
+        }
+
+        .license-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .license-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--success);
+        }
+
+        .license-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .license-number {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* 連絡先セクション */
+        .contact-section {
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+            }
+
+            .main-content {
+                padding: 0 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .info-table th {
+                width: 120px;
+                font-size: 0.9rem;
+            }
+
+            .info-table th,
+            .info-table td {
+                padding: 0.75rem;
+            }
+
+            .company-header {
+                padding: 1.5rem;
+            }
+
+            .company-details {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🌍 ExportPlus</a>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> トップページに戻る
+            </a>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <h1 class="page-title">会社概要</h1>
+
+        <!-- 会社基本情報 -->
+        <section class="company-info">
+            <div class="company-header">
+                <h2>JPプロダクトリテイリング合同会社</h2>
+                <p>JP Product Retailing LLC</p>
+            </div>
+            <div class="company-details">
+                <table class="info-table">
+                    <tr>
+                        <th>会社名</th>
+                        <td>JPプロダクトリテイリング合同会社</td>
+                    </tr>
+                    <tr>
+                        <th>代表者</th>
+                        <td>島袋謙</td>
+                    </tr>
+                    <tr>
+                        <th>所在地</th>
+                        <td>〒904-0115<br>沖縄県中頭郡北谷町字伊平２０４番地<br>ベアーズコート桑江タウンリゾート８０１</td>
+                    </tr>
+                    <tr>
+                        <th>法人番号</th>
+                        <td>8360003012098</td>
+                    </tr>
+                    <tr>
+                        <th>電話番号</th>
+                        <td><a href="tel:09097847764" style="color: var(--primary-color);">090-9784-7764</a></td>
+                    </tr>
+                    <tr>
+                        <th>メールアドレス</th>
+                        <td><a href="mailto:contact@japan-product-retail.com" style="color: var(--primary-color);">contact@japan-product-retail.com</a></td>
+                    </tr>
+                    <tr>
+                        <th>営業時間</th>
+                        <td>平日 9:00-18:00</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 事業内容 -->
+        <section class="business-section">
+            <h2 class="section-title">事業内容</h2>
+            <ul class="business-list">
+                <li>
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <strong>輸出販売代理サービス</strong><br>
+                        中小企業・個人事業主様の商品を、完全無料で海外170ヶ国以上に販売代理いたします。
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <strong>輸出リスク保証</strong><br>
+                        返品、詐欺、関税トラブル、パテントトロール等、輸出に関するあらゆるリスクを弊社が負担いたします。
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-gavel"></i>
+                    <div>
+                        <strong>知的財産権保護サービス</strong><br>
+                        パテントトロール・商標トロール対策を専門チームが24時間体制で監視・対応いたします。
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-shipping-fast"></i>
+                    <div>
+                        <strong>自社商品の輸出販売</strong><br>
+                        弊社独自の商品ラインナップを世界各国に展開しております。
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-handshake"></i>
+                    <div>
+                        <strong>海外展開コンサルティング</strong><br>
+                        海外市場進出に関する戦略立案から実行まで、総合的にサポートいたします。
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 許可・認可 -->
+        <section class="licenses-section">
+            <h2 class="section-title">許可・認可</h2>
+            <div class="license-grid">
+                <div class="license-card">
+                    <div class="license-title">
+                        <i class="fas fa-certificate"></i> 古物商許可
+                    </div>
+                    <div class="license-number">
+                        許可番号：第971052200606号<br>
+                        許可公安委員会：沖縄県公安委員会
+                    </div>
+                </div>
+                <div class="license-card">
+                    <div class="license-title">
+                        <i class="fas fa-building"></i> 法人登記
+                    </div>
+                    <div class="license-number">
+                        法人番号：8360003012098<br>
+                        登記地：沖縄県
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせ -->
+        <section class="contact-section">
+            <h2 style="color: white; margin-bottom: 1rem;">お問い合わせ</h2>
+            <p>海外展開に関するご相談は、お気軽にお問い合わせください</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h4>お電話でのお問い合わせ</h4>
+                    <p><a href="tel:09097847764">090-9784-7764</a></p>
+                    <p>平日 9:00-18:00</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>メールでのお問い合わせ</h4>
+                    <p><a href="mailto:contact@japan-product-retail.com">contact@japan-product-retail.com</a></p>
+                    <p>24時間以内にご返信</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <h4>Webフォーム</h4>
+                    <p><a href="index.html#contact">無料相談フォーム</a></p>
+                    <p>簡単入力でお問い合わせ</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
